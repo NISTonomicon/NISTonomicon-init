@@ -1,0 +1,25 @@
+{
+  "name": "NISTonomicon-init",
+  "version": "0.0.1",
+  "description": "a command line tool for generating a basic NISTonomicon test suite",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/NISTonomicon/NISTonomicon-init"
+  },
+  "keywords": [
+    "NISTonomicon",
+    "wizard",
+    "800-53",
+    "init"
+  ],
+  "author": "hortinstein",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/NISTonomicon/NISTonomicon-init/issues"
+  },
+  "homepage": "https://github.com/NISTonomicon/NISTonomicon-init"
+}
