@@ -22,24 +22,25 @@ var spawn = require('child_process').spawn;
 //         callback(resultCount)
 //     });
 // }
-
 var nistonomicon_init = require('../index.js');
-
 //     it('should pass in an overlay of 4, with 2 passing, 1 failing and 1 pending', function(done) {
 //         spawnTest('./test/testcase_function_configs/testcase_2passing_1failing_1pending.js', function(resultCount) {
 //             resultCount.passing.should.equal(2)
 //             done();
 //         })
 //     });
-
-it('should return the module exports statement statement', function(done){
+it('should return the module exports statement statement', function(done) {
     var exported = nistonomicon_init.returnExportStatement();
     exported.slice(-1).should.equal('}');
     done()
 })
-
-it('should return the module exports statement statement', function(done){
-    var exported = nistonomicon_init.returnControlTestFunctions ();
-    exported.slice(-1).should.equal(')');
+it('should return the control implementation guidance for use in comments (depends on nistonomicon package)', function(done) {
+    var exported = nistonomicon_init.lookupControlInfo('AC_2');
+    console.log(exported)
+})
+it('should return the control test functions', function(done) {
+    var exported = nistonomicon_init.returnControlTestFunctions(['AC_1_1', 'AC_2']);
+    console.log(exported)
+    exported.slice(-1).should.equal(';');
     done()
 })

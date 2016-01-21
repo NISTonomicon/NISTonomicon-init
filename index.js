@@ -1,8 +1,23 @@
-var returnControlTestFunctions = function(name) {
-    var s = "var " + name + "_test = function(done) {"
-    s += "    done()"
-    s + "}"
-    return s
+
+var parseGuidance(statement,data){
+    
+}
+
+var lookupControlInfo = function(controlNumber) {
+    var controlGuidance = require('./node_modules/nistonomicon/util/controlListParser.js').implementationGuidance[controlNumber]
+    
+    return controlGuidance[controlNumber]
+}
+var returnControlTestFunctions = function(names) {
+    var s = ''
+    for(name in names) {
+        test_name = names[name];
+        s += "it(\"" + names[name] + " control test\", function(done) {"
+        s += "//this is where the test logic will be implemented"
+        s += "done();"
+        s += "};"
+    }
+    return s;
 }
 //This will generate the package.json file required for NISTonomicon to run
 var outputPackageJSON = function(name, version, description, repository, author, homepage) {
@@ -25,6 +40,7 @@ var outputPackageJSON = function(name, version, description, repository, author,
         "author": "hortinstein",
         "homepage": data.homepage
     }
+    return json;
 }
 var returnExportStatement = function(overlay, inherited, implemented, inheritable) {
     var s = "if(require.main === module) {//called directly as an executable for evaluation"
@@ -36,13 +52,11 @@ var returnExportStatement = function(overlay, inherited, implemented, inheritabl
     s += "}"
     return s;
 }
-
-if (process.env.NODE_ENV = 'unit_test'){
+if(process.env.NODE_ENV = 'unit_test') {
     module.exports = {
         outputPackageJSON: outputPackageJSON,
         returnControlTestFunctions: returnControlTestFunctions,
-        returnExportStatement: returnExportStatement
-    };    
-} else {
-    
-}
+        returnExportStatement: returnExportStatement,
+        lookupControlInfo: lookupControlInfo
+    };
+} else {}
